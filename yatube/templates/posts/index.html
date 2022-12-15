@@ -1,0 +1,24 @@
+{% extends 'base.html' %} 
+
+
+{% block title %}
+  Последние обновления на сайте
+{% endblock %} 
+
+
+{% block content %}
+  <div class="container py-5"> 
+    <h1>Последние обновления на сайте</h1>
+    <hr>
+    {% for post in page_obj %}
+      {% include 'includes/post.html' with show_group_link=True %}
+    {% endfor %}
+  
+    {% include 'includes/paginator.html' %}
+  {% comment %}
+    {% for post in posts %}
+      {% include 'includes/post.html' with show_group_link=True %}
+    {% endfor %}
+  {% endcomment %}
+  </div>
+{% endblock %}
