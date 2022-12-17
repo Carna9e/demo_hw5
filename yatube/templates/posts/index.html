@@ -12,13 +12,11 @@
     <hr>
     {% for post in page_obj %}
       {% include 'includes/post.html' with show_group_link=True %}
+      {% if not forloop.last %}
+        <hr>
+      {% endif %}
     {% endfor %}
   
     {% include 'includes/paginator.html' %}
-  {% comment %}
-    {% for post in posts %}
-      {% include 'includes/post.html' with show_group_link=True %}
-    {% endfor %}
-  {% endcomment %}
   </div>
 {% endblock %}

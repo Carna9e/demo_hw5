@@ -11,14 +11,11 @@
     <h1>{{ group.title }}</h1>
     {{ group.description|linebreaks  }}
     <hr>
-  {% comment %} 
-    {% for post in posts %}
-      {% include 'includes/post.html' %}
-    {% endfor %}
-  {% endcomment %}
-  
     {% for post in page_obj %}
       {% include 'includes/post.html' %}
+      {% if not forloop.last %}
+        <hr>
+      {% endif %}
     {% endfor %}
   
     {% include 'includes/paginator.html' %}

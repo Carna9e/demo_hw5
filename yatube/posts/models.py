@@ -1,11 +1,11 @@
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
 
 User = get_user_model()
 
 
 class Group(models.Model):
-    '''Модель для групп постов'''
+    """Модель для групп постов"""
     title = models.CharField('title для страницы группы', max_length=200)
     slug = models.SlugField('url-адрес для страницы группы', unique=True)
     description = models.TextField('Описание для страницы группы')
@@ -19,7 +19,7 @@ class Group(models.Model):
 
 
 class Post(models.Model):
-    '''Модель для постов'''
+    """Модель для постов"""
     text = models.TextField('Текст поста')
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     group = models.ForeignKey(
