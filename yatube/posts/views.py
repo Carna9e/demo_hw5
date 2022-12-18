@@ -37,7 +37,6 @@ def profile(request, username):
     context = {
         'author': author,
         'page_obj': page_obj,
-        'user_name': username
     }
     return render(request, 'posts/profile.html', context)
 
@@ -45,21 +44,10 @@ def profile(request, username):
 def post_detail(request, post_id):
     """функция подробной информации о посте"""
     post = get_object_or_404(Post, id=post_id)
-    # posts_count = Post.objects.filter(author=post.author).count()
-    # posts_count = post.author.posts.count() - подсчет через related_name
     context = {
         'post': post,
-        # 'posts_count': posts_count
     }
     return render(request, 'posts/post_detail.html', context)
-
-# href="{% url 'posts:profile' post.author.posts.count %}">
-# ага. related_name у тебя правильно указан. теперь в шаблоне
-# кол=во постов автора ты можешь указать так
-# {{ post.author.posts.count }}
-# и должен корректно считать посты на страницы пост_детейл
-# имя автора у меня выведено так
-# {{ post.author.get_full_name }}
 
 
 @login_required
