@@ -10,7 +10,7 @@
     <h3>Всего постов: {{ author.posts.count }}</h3>  
     {% for post in page_obj %}
       {% if author %}
-        {% include 'includes/post.html' with bool=False %}
+        {% include 'includes/post.html' with not_author_page=True %}
       {% endif %}
       {%if post.group %}
         <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
