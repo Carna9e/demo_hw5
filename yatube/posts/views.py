@@ -4,13 +4,13 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import PostForm
 from .models import Group, Post, User
-from .utils import Page
+from .utils import page
 
 
 def index(request):
     """Функция главной страницы"""
     post_list = Post.objects.all()
-    page_obj = Page(request, post_list, settings.LIMIT)
+    page_obj = page(request, post_list, settings.LIMIT)
     context = {
         'page_obj': page_obj,
     }
@@ -21,7 +21,7 @@ def group_posts(request, slug):
     """функция группы постов"""
     group = get_object_or_404(Group, slug=slug)
     post_list = group.posts.all()
-    page_obj = Page(request, post_list, settings.LIMIT)
+    page_obj = page(request, post_list, settings.LIMIT)
     context = {
         'group': group,
         'page_obj': page_obj,
@@ -33,7 +33,7 @@ def profile(request, username):
     """функция страницы порфиля автора"""
     author = get_object_or_404(User, username=username)
     post_list = Post.objects.filter(author=author)
-    page_obj = Page(request, post_list, settings.LIMIT)
+    page_obj = page(request, post_list, settings.LIMIT)
     context = {
         'author': author,
         'page_obj': page_obj,
