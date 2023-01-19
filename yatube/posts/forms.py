@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Post
+from .models import Post, Comment
 
 
 class PostForm(forms.ModelForm):
@@ -16,8 +16,20 @@ class PostForm(forms.ModelForm):
     class Meta:
         # лейблы как я понял в модели прописаны
         model = Post
-        fields = ('text', 'group')
+        fields = ('text', 'group', 'image')
+        '''
         help_texts = {
             'text': 'Введите текст для поста',
             'group': 'Выберите группу из списка'
-        }
+        }'''
+
+class CommentForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['text'].widget.attrs['placeholder'] = (
+            'Введите комментарий... 😥'
+        )
+
+    class Meta:
+        model = Comment
+        fields = ('text',)
